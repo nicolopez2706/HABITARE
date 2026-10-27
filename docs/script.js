@@ -276,6 +276,44 @@ if (configurador) {
 }
 
 /* =====================================
+   ACCESORIOS (coleccion.html)
+===================================== */
+
+const acabadosVista = document.querySelector(".acabados-vista img");
+
+if (acabadosVista) {
+    const acabadoBtns = document.querySelectorAll("[data-componente]");
+
+    acabadoBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const color = btn.dataset.componente;
+
+            acabadoBtns.forEach(b => {
+                const activo = b === btn;
+                b.classList.toggle("active", activo);
+                b.setAttribute("aria-pressed", activo ? "true" : "false");
+            });
+
+            acabadosVista.classList.add("cambiando");
+            setTimeout(() => {
+                acabadosVista.src = "assets/images/componentes-" + color + ".webp";
+                acabadosVista.alt = "Ambiente con pared divisoria HABITARE y componentes en color " + COMPONENT_COLORS[color].toLowerCase();
+                acabadosVista.classList.remove("cambiando");
+            }, 250);
+        });
+    });
+}
+
+// Resalta el número del complemento al pasar sobre la lista
+document.querySelectorAll(".complementos-lista li").forEach(li => {
+    const pin = document.querySelector('.pin[data-pin="' + li.dataset.pin + '"]');
+    const on = () => { li.classList.add("active"); if (pin) pin.classList.add("active"); };
+    const off = () => { li.classList.remove("active"); if (pin) pin.classList.remove("active"); };
+    li.addEventListener("mouseenter", on);
+    li.addEventListener("mouseleave", off);
+});
+
+/* =====================================
    NEWSLETTER
 ===================================== */
 

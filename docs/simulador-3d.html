@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simulador 3D de HABITARE: explorá configuraciones, materiales, colores y accesorios.">
+
+    <title>Simulador 3D — HABITARE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== Página Simulador 3D ===== */
+        .simulador {
+            min-height: 100vh;
+            padding: 140px 8vw 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .simulador h1 {
+            margin-top: 28px;
+            font-size: clamp(44px, 6.4vw, 92px);
+            letter-spacing: -3px;
+        }
+
+        .simulador p {
+            margin-top: 30px;
+            max-width: 480px;
+            font-size: 13px;
+            line-height: 2;
+            color: var(--muted);
+        }
+
+        .simulador .overline {
+            justify-content: center;
+        }
+
+        @media (max-width: 600px) {
+            .simulador {
+                padding: 120px 6vw 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <a href="index.html" class="logo">
+        <span class="logo-word">HABITARE</span>
+        <span class="logo-ring"></span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="coleccion.html">Colección</a>
+        <a href="disenador.html">Diseñador</a>
+        <a href="como-comprar.html">¿Cómo comprar?</a>
+        <a href="simulador-3d.html" aria-current="page">Simulador 3D</a>
+    </nav>
+
+    <div class="header-right">
+        <button class="open-selection">
+            Mi selección
+            <span class="selection-number">0</span>
+        </button>
+        <button class="menu-toggle" aria-label="Abrir menú"><span></span></button>
+    </div>
+
+</header>
+
+<nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="coleccion.html">Colección</a>
+    <a href="disenador.html">Diseñador</a>
+    <a href="como-comprar.html">¿Cómo comprar?</a>
+    <a href="simulador-3d.html">Simulador 3D</a>
+</nav>
+
+<!-- SELECCIÓN -->
+<div class="selection-backdrop"></div>
+
+<aside class="selection-panel">
+    <div class="selection-top">
+        <div>
+            <small>HABITARE</small>
+            <h2>Mi selección</h2>
+        </div>
+        <button class="close-selection" aria-label="Cerrar">×</button>
+    </div>
+
+    <div class="selection-content"></div>
+
+    <div class="selection-empty">
+        <h3>Todavía no armaste tu selección</h3>
+        <p>Recorré la colección y sumá las piezas que más te gusten.</p>
+    </div>
+
+    <div class="selection-bottom">
+        <div class="selection-count-line"></div>
+        <p>Con tu selección armada, coordinamos cantidades, configuración y tiempos de producción a medida.</p>
+        <a class="quote-btn whatsapp" target="_blank" rel="noopener">SOLICITAR POR WHATSAPP →</a>
+        <a class="quote-btn email">ENVIAR POR EMAIL →</a>
+    </div>
+</aside>
+
+
+<main>
+
+<section class="simulador">
+    <span class="overline">SIMULADOR 3D</span>
+    <h1>Diseña tu HABITARE</h1>
+    <p>
+        Explora las distintas configuraciones, elegí materiales, colores y accesorios y visualiza cómo se adapta HABITARE a tu espacio.
+    </p>
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+    <div class="footer-top">
+
+        <div class="footer-col">
+            <span>DIRECCIÓN</span>
+            <p>Av. República de China<br>Valle Escondido<br>Córdoba, Argentina</p>
+        </div>
+
+        <div class="footer-col">
+            <span>CONTACTO</span>
+            <a href="mailto:Habitare@gmail.com">Habitare@gmail.com</a>
+            <a href="https://wa.me/5493513320235" target="_blank" rel="noopener">+54 9 351 332 0235</a>
+        </div>
+
+        <div class="footer-col footer-nav">
+            <span>NAVEGACIÓN</span>
+            <a href="index.html">Home</a>
+            <a href="coleccion.html">Colección</a>
+            <a href="como-comprar.html">¿Cómo comprar?</a>
+            <a href="simulador-3d.html">Simulador 3D</a>
+        </div>
+
+    </div>
+
+    <div class="footer-word">HABITARE.</div>
+
+    <div class="footer-bottom">
+        <span>MATERIA / COLOR / ARQUITECTURA</span>
+        <span>© 2026 HABITARE</span>
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

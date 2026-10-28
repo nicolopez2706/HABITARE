@@ -13,6 +13,45 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== Portada: recorte de la colección (fondo transparente) ===== */
+        .hero-photo {
+            -webkit-mask-image: none;
+            mask-image: none;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 16px 20px rgba(35, 28, 20, .14));
+        }
+
+        /* Pantallas anchas: la colección a la derecha, en tamaño contenido */
+        @media (min-width: 1241px) and (min-aspect-ratio: 3 / 2) {
+            .hero-photo {
+                top: 72px;
+                right: 5vw;
+                bottom: 0;
+                left: auto;
+                width: min(50vw, 760px);
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        /* Tablet y celular: debajo del texto, centrada */
+        @media (max-width: 1240px), (max-aspect-ratio: 3 / 2) {
+            .hero-photo {
+                position: relative;
+                width: min(680px, 94%);
+                aspect-ratio: auto;
+                margin: 44px auto 0;
+                padding-bottom: 36px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -111,7 +150,7 @@
     </div>
 
     <div class="hero-photo">
-        <img src="assets/images/portada-lineas.webp" alt="Las siete líneas de color de HABITARE sobre plintos de piedra en un espacio luminoso" width="1342" height="752" fetchpriority="high">
+        <img src="assets/images/portada-lineas.webp" alt="Las siete líneas de color de HABITARE sobre plintos de piedra en un espacio luminoso" width="1629" height="639" fetchpriority="high">
     </div>
 
     <span class="hero-bottom">DESLIZÁ PARA EXPLORAR</span>

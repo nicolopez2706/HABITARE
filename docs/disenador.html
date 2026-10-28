@@ -13,6 +13,123 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== Página Diseñador ===== */
+        .disenador-perfil {
+            padding: 150px 8vw 70px;
+            display: grid;
+            grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+            gap: 64px;
+            align-items: center;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .disenador-foto img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .disenador-datos h1 {
+            margin-top: 22px;
+            font-size: clamp(44px, 5.4vw, 76px);
+            letter-spacing: -2.5px;
+        }
+
+        .disenador-rol {
+            margin-top: 26px;
+            font-size: 8px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .disenador-frase {
+            margin-top: 16px;
+            max-width: 440px;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(18px, 1.8vw, 23px);
+            line-height: 1.5;
+        }
+
+        .disenador-lugar {
+            margin-top: 18px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .disenador-btn {
+            margin-top: 34px;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 26px;
+            background: var(--ink);
+            color: var(--cream);
+            font-size: 8px;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            transition: opacity .3s ease;
+        }
+
+        .disenador-btn:hover {
+            opacity: .8;
+        }
+
+        .disenador-texto {
+            padding: 70px 8vw 130px;
+            background: var(--cream-soft);
+        }
+
+        .disenador-texto-inner {
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .disenador-texto p {
+            font-size: 13px;
+            line-height: 2;
+            color: var(--muted);
+        }
+
+        .disenador-texto p + p {
+            margin-top: 22px;
+        }
+
+        .disenador-texto p.disenador-lead {
+            margin-top: 30px;
+            font-family: "Playfair Display", serif;
+            font-style: italic;
+            font-size: clamp(19px, 2.1vw, 25px);
+            line-height: 1.55;
+            color: var(--ink);
+        }
+
+        .disenador-texto p.disenador-lead + p {
+            margin-top: 34px;
+        }
+
+        @media (max-width: 800px) {
+            .disenador-perfil {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 110px 6vw 50px;
+            }
+
+            .disenador-foto {
+                max-width: 420px;
+            }
+
+            .disenador-texto {
+                padding: 60px 6vw 90px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -78,56 +195,51 @@
 
 <main>
 
-<!-- HERO -->
-<section class="page-hero">
-    <span class="overline">DISEÑADOR</span>
-    <h1>Diseñador.</h1>
-    <p>La persona y el estudio detrás del sistema HABITARE.</p>
+<!-- PERFIL -->
+<section class="disenador-perfil">
+
+    <div class="disenador-foto">
+        <img src="assets/images/lorenzo-galli.webp" alt="Retrato en blanco y negro de Lorenzo Galli, diseñador industrial" width="800" height="1000">
+    </div>
+
+    <div class="disenador-datos">
+        <span class="overline">EL DISEÑADOR</span>
+        <h1>Lorenzo Galli</h1>
+        <p class="disenador-rol">DISEÑADOR INDUSTRIAL</p>
+        <p class="disenador-frase">Diseño, materiales y funcionalidad como punto de partida para desarrollar nuevas soluciones.</p>
+        <p class="disenador-lugar">Córdoba, Argentina</p>
+        <a class="disenador-btn" href="https://online.fliphtml5.com/htvpox/wthn/#p=1" target="_blank" rel="noopener">Conocé mi portfolio <span aria-hidden="true">→</span></a>
+    </div>
+
 </section>
 
-<div class="placeholder-note">
-    ✎ Esta sección está lista para completarse con tu información real: no
-    inventamos ningún dato biográfico. Reemplazá los textos de abajo con tu
-    nombre, formación y enfoque de diseño — el diseño de la página ya está
-    terminado.
-</div>
+<!-- MANERA DE DISEÑAR -->
+<section class="disenador-texto">
+    <div class="disenador-texto-inner">
 
-<section class="bio-grid">
+        <span class="overline">UNA MANERA DE DISEÑAR</span>
 
-    <div class="bio-facts">
-        <div>
-            <span>NOMBRE</span>
-            <strong>[Completá tu nombre]</strong>
-        </div>
-        <div>
-            <span>FORMACIÓN</span>
-            <strong>[Completá tu formación]</strong>
-        </div>
-        <div>
-            <span>BASE</span>
-            <strong>Córdoba, Argentina</strong>
-        </div>
-        <div>
-            <span>ENFOQUE</span>
-            <strong>Cerámica modular</strong>
-        </div>
-    </div>
-
-    <div>
-        <h3>[Tu nombre o el del estudio]</h3>
-        <p>
-            [Contá acá tu historia: cómo empezaste a trabajar la cerámica, qué te
-            llevó a diseñar HABITARE y qué buscás transmitir con el sistema. Un
-            párrafo o dos alcanza — la tipografía y el espaciado ya están
-            pensados para que se lea bien en cualquier pantalla.]
+        <p class="disenador-lead">
+            Entiendo el diseño como una forma de observar, cuestionar y transformar aquello que nos rodea. Más allá de crear objetos, me interesa comprender cómo las personas se relacionan con ellos, qué necesidades existen detrás de cada uso y de qué manera el diseño puede aportar nuevas posibilidades.
         </p>
-        <p>
-            [Opcional: un segundo párrafo sobre tu proceso de trabajo, el taller
-            donde producís las piezas, o la filosofía detrás del diseño dual del
-            módulo.]
-        </p>
-    </div>
 
+        <p>
+            Para mí, diseñar es un proceso de búsqueda constante. Es investigar, experimentar, equivocarse, volver a intentar y tomar decisiones que permitan transformar una idea en algo concreto. Me interesa tanto el resultado final como el recorrido que lleva hasta él, porque es en ese proceso donde aparecen los aprendizajes y las oportunidades de descubrir nuevas soluciones.
+        </p>
+
+        <p>
+            A lo largo de mi formación como diseñador industrial fui desarrollando un especial interés por los materiales, los procesos productivos y las posibilidades que surgen al combinar distintas disciplinas. Busco encontrar un equilibrio entre lo funcional, lo técnico y lo sensible, entendiendo que cada material tiene sus propias características y que cada decisión influye en la experiencia de quien utiliza un producto.
+        </p>
+
+        <p>
+            De esa manera de entender el diseño nace HABITARE. Un proyecto que parte de observar cómo vivimos y utilizamos nuestros espacios, y que busca explorar nuevas relaciones entre los objetos, la arquitectura y las personas.
+        </p>
+
+        <p>
+            Más que llegar a una única respuesta, me interesa desarrollar soluciones que puedan adaptarse, evolucionar y responder a diferentes maneras de habitar.
+        </p>
+
+    </div>
 </section>
 
 </main>

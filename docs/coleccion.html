@@ -13,6 +13,156 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== Colección: 3 bloques (Líneas / Componentes del sistema / Componentes funcionales) ===== */
+        .sistema {
+            padding: 130px 8vw;
+            background: var(--cream-soft);
+            scroll-margin-top: 72px;
+        }
+
+        .accesorios {
+            background: var(--cream);
+        }
+
+        .regulador {
+            background: var(--cream-soft);
+        }
+
+        .sistema-intro {
+            max-width: 520px;
+            margin-top: 30px;
+            font-size: 12px;
+            line-height: 1.9;
+            color: var(--muted);
+        }
+
+        .sistema-lista {
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 90px;
+        }
+
+        .sistema-item {
+            display: grid;
+            grid-template-columns: minmax(0, 34%) minmax(0, 1fr);
+            gap: 60px;
+            align-items: center;
+        }
+
+        .sistema-item:nth-child(even) {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 34%);
+        }
+
+        .sistema-item:nth-child(even) .sistema-texto {
+            order: 2;
+        }
+
+        .sistema-texto h3 {
+            margin-top: 18px;
+            font-size: 34px;
+            letter-spacing: -1px;
+        }
+
+        .sistema-texto p {
+            margin-top: 18px;
+            max-width: 360px;
+            font-size: 12px;
+            line-height: 2;
+            color: var(--muted);
+        }
+
+        .sistema-item figure img {
+            width: 100%;
+            height: auto;
+        }
+
+        .sistema-item:nth-child(2) figure {
+            max-width: 560px;
+            justify-self: center;
+            width: 100%;
+        }
+
+        .sistema .acabados {
+            grid-template-columns: minmax(0, 1fr);
+            max-width: 720px;
+            margin-top: 110px;
+            padding-top: 70px;
+        }
+
+        .colocacion {
+            margin-top: 110px;
+            padding-top: 80px;
+            border-top: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: minmax(0, 34%) minmax(0, 1fr);
+            gap: 60px;
+            align-items: center;
+        }
+
+        .colocacion .acabados-colocacion img {
+            width: 100%;
+            height: auto;
+        }
+
+        .colocacion-texto h3 {
+            margin-top: 24px;
+            font-size: 42px;
+            letter-spacing: -1px;
+        }
+
+        .colocacion-texto p {
+            margin-top: 22px;
+            max-width: 440px;
+            font-size: 12px;
+            line-height: 2;
+            color: var(--muted);
+        }
+
+        .regulador-luz {
+            padding-bottom: 0;
+        }
+
+        @media (max-width: 900px) {
+            .sistema-item,
+            .sistema-item:nth-child(even),
+            .colocacion {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 34px;
+            }
+
+            .sistema-item:nth-child(even) .sistema-texto {
+                order: 0;
+            }
+
+            .colocacion .acabados-colocacion {
+                max-width: 360px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sistema {
+                padding: 90px 6vw;
+            }
+
+            .sistema-lista {
+                margin-top: 56px;
+                gap: 64px;
+            }
+
+            .sistema .acabados,
+            .colocacion {
+                margin-top: 80px;
+                padding-top: 56px;
+            }
+
+            .colocacion-texto h3 {
+                font-size: 34px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -127,19 +277,21 @@
         <div class="definiciones">
 
             <div class="definicion">
-                <h4>Piezas cerámicas</h4>
-                <p>Elementos principales del sistema, diseñados para generar división, textura y composición visual.</p>
+                <h4>Líneas</h4>
+                <p>Siete líneas de color de una misma pieza cerámica, diseñadas para generar división, textura y composición visual.</p>
+                <a class="linea-cta" href="#lineas">VER LÍNEAS<span>→</span></a>
             </div>
 
             <div class="definicion">
-                <h4>Accesorios</h4>
-                <p>Complementos intercambiables que amplían las posibilidades de uso, soporte y personalización.</p>
-                <a class="linea-cta" href="#accesorios">VER COMPLEMENTOS<span>→</span></a>
+                <h4>Componentes del sistema</h4>
+                <p>Guía inferior, componente telescópico y guía superior: tres piezas de metal para montar el sistema sin obra.</p>
+                <a class="linea-cta" href="#componentes-sistema">VER COMPONENTES<span>→</span></a>
             </div>
 
             <div class="definicion">
-                <h4>Componentes de instalación</h4>
-                <p>Guías de instalación, columnas estructurales y componente telescópico para montar el sistema sin obra.</p>
+                <h4>Componentes funcionales</h4>
+                <p>Complementos funcionales y regulador ambiental, que amplían las posibilidades de uso del sistema.</p>
+                <a class="linea-cta" href="#componentes-funcionales">VER FUNCIONALES<span>→</span></a>
             </div>
 
         </div>
@@ -157,7 +309,7 @@
             <span class="overline">PALETA / 07</span>
             <h2>Líneas</h2>
         </div>
-        <span class="section-index">07 / 07</span>
+        <span class="section-index">01 / 03</span>
     </div>
 
     <div class="lineas-grid">
@@ -272,21 +424,109 @@
 </section>
 
 
+<!-- COMPONENTES DEL SISTEMA -->
+<section class="sistema" id="componentes-sistema">
+
+    <div class="section-heading">
+        <div>
+            <span class="overline">COMPONENTES DE METAL / 03</span>
+            <h2>Componentes<br><i>del sistema.</i></h2>
+        </div>
+        <span class="section-index">02 / 03</span>
+    </div>
+
+    <p class="sistema-intro">
+        Tres piezas de metal sostienen la estructura y permiten instalar HABITARE sin obra.
+    </p>
+
+    <div class="sistema-lista">
+
+        <article class="sistema-item">
+            <div class="sistema-texto">
+                <span class="product-code">01 — GUÍA INFERIOR</span>
+                <h3>Guía inferior</h3>
+                <p>Se apoya en el piso y recibe a las piezas cerámicas, que se posicionan, se encastran y se apilan sobre ella.</p>
+            </div>
+            <figure>
+                <img src="assets/images/sistema-guia-inferior.webp" alt="Posicionar la guía inferior, encastrar y apilar las piezas HABITARE hasta el último ladrillo" width="1716" height="661" loading="lazy">
+            </figure>
+        </article>
+
+        <article class="sistema-item">
+            <div class="sistema-texto">
+                <span class="product-code">02 — COMPONENTE TELESCÓPICO</span>
+                <h3>Componente telescópico</h3>
+                <p>Se extiende hasta el techo y se ajusta a la altura de cada ambiente, manteniendo la columna firme.</p>
+            </div>
+            <figure>
+                <img src="assets/images/sistema-telescopico.webp" alt="Detalle del componente telescópico y de la columna de módulos HABITARE con sus guías" width="1028" height="856" loading="lazy">
+            </figure>
+        </article>
+
+        <article class="sistema-item">
+            <div class="sistema-texto">
+                <span class="product-code">03 — GUÍA SUPERIOR</span>
+                <h3>Guía superior</h3>
+                <p>Se fija al techo y recibe al componente telescópico, cerrando la estructura en la parte superior.</p>
+            </div>
+            <figure>
+                <img src="assets/images/sistema-guia-superior.webp" alt="Instalación de la guía superior, extensión del componente telescópico y ajuste" width="1373" height="765" loading="lazy">
+            </figure>
+        </article>
+
+    </div>
+
+    <div class="acabados">
+
+        <div class="acabados-detalle">
+            <span class="overline">COLOR DE LOS COMPONENTES</span>
+            <h3>Gris, blanco <i>o negro.</i></h3>
+            <p>
+                Guías, componente telescópico y complementos se ofrecen en tres
+                opciones de acabado y color.
+            </p>
+
+            <div class="acabados-vista">
+                <img src="assets/images/componentes-gris.webp" alt="Ambiente con pared divisoria HABITARE y componentes en color gris" width="1448" height="1086" loading="lazy">
+            </div>
+
+            <div class="color-options" role="group" aria-label="Color de los componentes">
+                <button type="button" class="color-option-btn active" data-componente="gris" aria-pressed="true">
+                    <span class="color-option-swatch" style="--swatch:#8c8c8c;"></span>
+                    Gris
+                </button>
+                <button type="button" class="color-option-btn" data-componente="blanco" aria-pressed="false">
+                    <span class="color-option-swatch" style="--swatch:#f2f2f2;"></span>
+                    Blanco
+                </button>
+                <button type="button" class="color-option-btn" data-componente="negro" aria-pressed="false">
+                    <span class="color-option-swatch" style="--swatch:#222222;"></span>
+                    Negro
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
 <!-- ACCESORIOS Y COMPLEMENTOS -->
-<section class="accesorios" id="accesorios">
+<section class="accesorios" id="componentes-funcionales">
 
     <div class="section-heading">
         <div>
             <span class="overline">ACCESORIOS Y COMPLEMENTOS</span>
             <h2>Componentes<br><i>funcionales.</i></h2>
         </div>
+        <span class="section-index">03 / 03</span>
     </div>
 
     <div class="product-grid complementos">
 
         <div class="product-details">
 
-            <span class="product-code">HABITARE — COMPLEMENTOS</span>
+            <span class="product-code">01 — COMPLEMENTOS FUNCIONALES</span>
 
             <h3>Siete complementos <i>funcionales.</i></h3>
 
@@ -334,39 +574,20 @@
 
     </div>
 
-    <div class="acabados">
+    <div class="colocacion">
 
         <figure class="acabados-colocacion">
             <img src="assets/images/complementos-colocacion.webp" alt="Colocación de un complemento negro sobre el inserto de madera de un módulo HABITARE" width="752" height="1078" loading="lazy">
             <figcaption>Colocación de un complemento sobre el módulo.</figcaption>
         </figure>
 
-        <div class="acabados-detalle">
-            <span class="overline">COLOR DE LOS COMPONENTES</span>
-            <h3>Gris, blanco <i>o negro.</i></h3>
+        <div class="colocacion-texto">
+            <span class="overline">COLOCACIÓN Y COLOR</span>
+            <h3>Se suman <i>al módulo.</i></h3>
             <p>
-                Guías, componente telescópico y complementos se ofrecen en tres
-                opciones de acabado y color.
+                Cada complemento se coloca directamente sobre el módulo y se ofrece en gris,
+                blanco o negro. Al armar tu pedido elegís el color de cada uno.
             </p>
-
-            <div class="acabados-vista">
-                <img src="assets/images/componentes-gris.webp" alt="Ambiente con pared divisoria HABITARE y componentes en color gris" width="1448" height="1086" loading="lazy">
-            </div>
-
-            <div class="color-options" role="group" aria-label="Color de los componentes">
-                <button type="button" class="color-option-btn active" data-componente="gris" aria-pressed="true">
-                    <span class="color-option-swatch" style="--swatch:#8c8c8c;"></span>
-                    Gris
-                </button>
-                <button type="button" class="color-option-btn" data-componente="blanco" aria-pressed="false">
-                    <span class="color-option-swatch" style="--swatch:#f2f2f2;"></span>
-                    Blanco
-                </button>
-                <button type="button" class="color-option-btn" data-componente="negro" aria-pressed="false">
-                    <span class="color-option-swatch" style="--swatch:#222222;"></span>
-                    Negro
-                </button>
-            </div>
         </div>
 
     </div>
@@ -379,7 +600,7 @@
 
     <div class="section-heading">
         <div>
-            <span class="overline">COMPLEMENTO / REGULADOR</span>
+            <span class="overline">02 — COMPONENTE FUNCIONAL</span>
             <h2>Regulador<br><i>ambiental.</i></h2>
         </div>
     </div>
@@ -426,10 +647,6 @@
 
         <figure class="regulador-luz">
             <img src="assets/images/regulador-luz.webp" alt="Detalle de un módulo HABITARE con la luz del exterior atravesando la perforación" width="1122" height="1402" loading="lazy">
-            <div class="regulador-detalle">
-                <img src="assets/images/regulador-bajorrelieve.webp" alt="Detalle del bajorrelieve circular del módulo" width="390" height="390" loading="lazy">
-            </div>
-            <figcaption>Bajorrelieve destinado a este componente.</figcaption>
         </figure>
 
     </div>

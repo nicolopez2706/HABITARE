@@ -49,6 +49,26 @@ const ACCESORIOS = [
 ];
 
 /* =====================================
+   NAVEGACIÓN — enlace "Simulador 3D" (después de ¿Cómo comprar?)
+===================================== */
+
+(function () {
+    const destino = "simulador-3d.html";
+
+    document.querySelectorAll(".header nav, .mobile-nav, .footer-nav").forEach(nav => {
+        if (nav.querySelector('a[href="' + destino + '"]')) return;
+
+        const enlace = document.createElement("a");
+        enlace.href = destino;
+        enlace.textContent = "Simulador 3D";
+
+        const ref = nav.querySelector('a[href="como-comprar.html"]');
+        if (ref) ref.after(enlace);
+        else nav.appendChild(enlace);
+    });
+})();
+
+/* =====================================
    MENÚ MÓVIL
 ===================================== */
 
@@ -119,6 +139,19 @@ document.querySelectorAll(".close-selection").forEach(btn => {
 document.querySelectorAll(".selection-backdrop").forEach(el => {
     el.addEventListener("click", closeSelection);
 });
+
+/* Aviso dentro del panel: la personalización se solicita por WhatsApp */
+(function () {
+    const bottom = document.querySelector(".selection-bottom");
+    const firstBtn = bottom ? bottom.querySelector(".quote-btn") : null;
+    if (!bottom || !firstBtn) return;
+
+    const nota = document.createElement("p");
+    nota.className = "selection-note";
+    nota.style.cssText = "margin-top:12px;padding:10px 12px;border:1px dashed var(--line);";
+    nota.innerHTML = '<strong style="font-weight:500;color:var(--ink);">Mayor personalización (colores de accesorios y otros detalles):</strong> solicitala por escrito, por WhatsApp o email, y la coordinamos con vos.';
+    bottom.insertBefore(nota, firstBtn);
+})();
 
 function nombreAccesorio(id) {
     const a = ACCESORIOS.find(x => x.id === id);
@@ -664,6 +697,18 @@ function initConfigurador(root) {
     summary.className = "config-summary";
     summary.setAttribute("aria-live", "polite");
     if (addBtn) addBtn.parentNode.insertBefore(summary, addBtn);
+
+    /* Aviso: la personalización se coordina por WhatsApp */
+    const nota = document.createElement("p");
+    nota.className = "config-note";
+    nota.style.cssText = "margin-top:18px;padding:14px 16px;border:1px dashed var(--line);font-size:11px;line-height:1.8;color:var(--muted);";
+    nota.innerHTML = `
+        <strong style="font-weight:500;color:var(--ink);">Mayor personalización por escrito.</strong>
+        Los colores y accesorios que elegís acá viajan en tu pedido. Para otras combinaciones o detalles a medida,
+        solicitalo por escrito: <a href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola HABITARE, quiero consultar por la personalización de colores y accesorios.")}"
+           target="_blank" rel="noopener" style="border-bottom:1px solid var(--ink);color:var(--ink);">escribinos por WhatsApp</a> o a <a href="mailto:${CONTACT_EMAIL}" style="border-bottom:1px solid var(--ink);color:var(--ink);">${CONTACT_EMAIL}</a>.
+    `;
+    if (addBtn) addBtn.parentNode.insertBefore(nota, addBtn);
 
     function accesoriosElegidos() {
         return ACCESORIOS

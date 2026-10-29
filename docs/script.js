@@ -30,9 +30,17 @@ const COLOR_HEX = {
     negro:  "#222222",
 };
 
-/* Regulador ambiental: paneles de fieltro */
+/* Regulador ambiental: paneles de fieltro (cada color tiene su foto) */
 const FIELTRO_COLORS = {
-    marron: { nombre: "Marrón", hex: "#6b4f3a" },
+    "marron":      { nombre: "Marrón",      hex: "#5e3b27" },
+    "gris-oscuro": { nombre: "Gris oscuro", hex: "#444446" },
+    "gris-claro":  { nombre: "Gris claro",  hex: "#8a8a8b" },
+};
+
+const FIELTRO_DEFECTO = "marron";
+
+/* Selecciones guardadas con los colores anteriores del fieltro */
+const FIELTRO_ANTERIORES = {
     gris:   { nombre: "Gris",   hex: "#6e7074" },
     blanco: { nombre: "Blanco", hex: "#f2f2f2" },
 };
@@ -47,6 +55,86 @@ const ACCESORIOS = [
     { id: "perchero",                   nombre: "Perchero",                   pin: 6 },
     { id: "estante",                    nombre: "Estante",                    pin: 7 },
 ];
+
+/* =====================================
+   ESTILOS DEL REGULADOR Y DE LA SELECCIÓN
+   (se agregan desde acá para no tocar style.css ni las 7 páginas de línea)
+===================================== */
+
+(function () {
+    const css = `
+    .reg-card {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 36px;
+        align-items: center;
+    }
+
+    .reg-visual {
+        margin: 0;
+    }
+
+    .reg-visual img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: auto;
+        object-fit: contain;
+        border: 0;
+        transition: opacity .22s ease;
+    }
+
+    .reg-visual img.cambiando {
+        opacity: 0;
+    }
+
+    .reg-visual figcaption {
+        margin-top: 12px;
+        font-size: 8px;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    .reg-controls .reg-label {
+        display: block;
+        margin: 24px 0 12px;
+        font-size: 7px;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    .reg-controls .acc-check {
+        margin-top: 26px;
+    }
+
+    .reg-card .acc-opts {
+        padding-left: 0;
+    }
+
+    .extra-dot {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        margin-right: 7px;
+        border-radius: 50%;
+        background: var(--swatch);
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .18);
+        vertical-align: baseline;
+    }
+
+    @media (max-width: 700px) {
+        .reg-card {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+    }`;
+
+    const style = document.createElement("style");
+    style.id = "habitare-estilos-extra";
+    style.textContent = css;
+    document.head.appendChild(style);
+})();
 
 /* =====================================
    NAVEGACIÓN — enlace "Simulador 3D" (después de ¿Cómo comprar?)
@@ -149,8 +237,17 @@ function nombreColor(color) {
     return COMPONENT_COLORS[color] || color;
 }
 
+function datosFieltro(color) {
+    return FIELTRO_COLORS[color] || FIELTRO_ANTERIORES[color] || { nombre: color, hex: "#cccccc" };
+}
+
 function nombreFieltro(color) {
-    return FIELTRO_COLORS[color] ? FIELTRO_COLORS[color].nombre : color;
+    return datosFieltro(color).nombre;
+}
+
+/* Punto de color que acompaña a cada complemento / regulador en la selección */
+function puntoColor(hex) {
+    return `<i class="extra-dot" style="--swatch:${hex}"></i>`;
 }
 
 function plural(n, uno, varios) {
@@ -280,11 +377,11 @@ function renderSelection() {
         const extras = [];
         accs.forEach(a => {
             totalComplementos += a.cantidad;
-            extras.push(`${nombreAccesorio(a.id)} ×${a.cantidad} · ${nombreColor(a.color)}`);
+            extras.push(`${puntoColor(COLOR_HEX[a.color] || "#cccccc")}${nombreAccesorio(a.id)} ×${a.cantidad} · ${nombreColor(a.color)}`);
         });
         if (item.regulador) {
             totalReguladores += item.regulador.cantidad;
-            extras.push(`Regulador ambiental ×${item.regulador.cantidad} · Fieltro ${nombreFieltro(item.regulador.color).toLowerCase()}`);
+            extras.push(`${puntoColor(datosFieltro(item.regulador.color).hex)}Regulador ambiental ×${item.regulador.cantidad} · Fieltro ${nombreFieltro(item.regulador.color).toLowerCase()}`);
         }
 
         const el = document.createElement("div");
@@ -374,7 +471,8 @@ function initConfigurador(root) {
         qty: 1,
         color: "gris",   // color de guías y componente telescópico
         acc: {},         // id -> { cantidad, color }
-        reg: null,       // { cantidad, color }
+        reg: null,       // { cantidad, color } (null = sin regulador)
+        regColor: FIELTRO_DEFECTO,   // color de fieltro que se está viendo / elegido
     };
 
     /* ---------- PASO 01: cantidad de piezas ---------- */
@@ -463,6 +561,13 @@ function initConfigurador(root) {
     COLORES.forEach(c => { paletaComponentes[c] = { nombre: nombreColor(c), hex: COLOR_HEX[c] }; });
     const clavesFieltro = Object.keys(FIELTRO_COLORS);
 
+    function imagenFieltro(color) {
+        return "assets/images/regulador-fieltro-" + color + ".webp";
+    }
+
+    /* precarga de las tres fotos del regulador para que el cambio de color no parpadee */
+    clavesFieltro.forEach(c => { new Image().src = imagenFieltro(c); });
+
     function accItemHTML(a) {
         const n = String(a.pin).padStart(2, "0");
         return `
@@ -529,23 +634,27 @@ function initConfigurador(root) {
                 </div>
 
                 <div class="reg-card">
-                    <img src="assets/images/regulador-pared.webp"
-                         alt="Pared HABITARE con reguladores ambientales cerrados, entreabiertos y abiertos"
-                         width="1448" height="1086">
-                    <div>
+                    <figure class="reg-visual">
+                        <img src="${imagenFieltro(state.regColor)}" data-reg-img="${state.regColor}"
+                             alt="Pared HABITARE con reguladores ambientales de fieltro ${nombreFieltro(state.regColor).toLowerCase()}"
+                             width="1100" height="815">
+                        <figcaption data-reg-caption>Fieltro ${nombreFieltro(state.regColor).toLowerCase()}</figcaption>
+                    </figure>
+                    <div class="reg-controls">
                         <p class="config-help">
                             Componente giratorio que vincula ambos lados de la pared y regula el ingreso de luz y
                             la privacidad entre ambientes. Paneles de fieltro en tres colores.
                         </p>
+                        <span class="reg-label">Color del fieltro</span>
+                        <div class="acc-colors" role="group" aria-label="Color del fieltro">
+                            ${colorChips("data-reg-color", "", clavesFieltro, FIELTRO_COLORS)}
+                        </div>
                         <label class="acc-check">
                             <input type="checkbox" data-reg-toggle>
                             <span class="acc-box" aria-hidden="true"></span>
                             <span class="acc-name">Sumar regulador ambiental</span>
                         </label>
                         <div class="acc-opts" data-reg-opts hidden>
-                            <div class="acc-colors" role="group" aria-label="Color del fieltro">
-                                ${colorChips("data-reg-color", "", clavesFieltro, FIELTRO_COLORS)}
-                            </div>
                             <div class="acc-qty">
                                 <button type="button" data-reg-qty="-1" aria-label="Restar reguladores">−</button>
                                 <span data-reg-count>1</span>
@@ -565,7 +674,7 @@ function initConfigurador(root) {
             if (t.dataset.accColor) return setAccColor(t.dataset.accId, t.dataset.accColor);
             if (t.dataset.accQty) return changeAccQty(t.dataset.accId, Number(t.dataset.accQty));
             if (t.dataset.bulkColor) return setBulkColor(t.dataset.bulkColor);
-            if (t.dataset.regColor && state.reg) { state.reg.color = t.dataset.regColor; return render(); }
+            if (t.dataset.regColor) return setRegColor(t.dataset.regColor);
             if (t.dataset.regQty && state.reg) {
                 state.reg.cantidad = Math.min(MAX, Math.max(1, state.reg.cantidad + Number(t.dataset.regQty)));
                 return render();
@@ -615,8 +724,33 @@ function initConfigurador(root) {
     }
 
     function toggleReg(on) {
-        state.reg = on ? (state.reg || { cantidad: 1, color: "marron" }) : null;
+        state.reg = on ? (state.reg || { cantidad: 1, color: state.regColor }) : null;
         render();
+    }
+
+    /* Elegir un color cambia la foto y, si todavía no estaba, suma el regulador */
+    function setRegColor(color) {
+        if (!FIELTRO_COLORS[color]) return;
+        state.regColor = color;
+        if (state.reg) state.reg.color = color;
+        else state.reg = { cantidad: 1, color: color };
+        render();
+    }
+
+    function mostrarFotoRegulador(color) {
+        const img = bodyAcc.querySelector("[data-reg-img]");
+        const caption = bodyAcc.querySelector("[data-reg-caption]");
+        if (!img || img.dataset.regImg === color) return;
+
+        img.dataset.regImg = color;
+        img.classList.add("cambiando");
+        setTimeout(() => {
+            img.src = imagenFieltro(color);
+            img.alt = "Pared HABITARE con reguladores ambientales de fieltro " + nombreFieltro(color).toLowerCase();
+            img.classList.remove("cambiando");
+        }, 200);
+
+        if (caption) caption.textContent = "Fieltro " + nombreFieltro(color).toLowerCase();
     }
 
     /* Refleja el estado en la pantalla */
@@ -665,12 +799,15 @@ function initConfigurador(root) {
             const regOpts = bodyAcc.querySelector("[data-reg-opts]");
             regCheck.checked = !!state.reg;
             regOpts.hidden = !state.reg;
+
+            bodyAcc.querySelectorAll("[data-reg-color]").forEach(b => {
+                const on = b.dataset.regColor === state.regColor;
+                b.classList.toggle("active", on);
+                b.setAttribute("aria-pressed", on ? "true" : "false");
+            });
+            mostrarFotoRegulador(state.regColor);
+
             if (state.reg) {
-                regOpts.querySelectorAll("[data-reg-color]").forEach(b => {
-                    const on = b.dataset.regColor === state.reg.color;
-                    b.classList.toggle("active", on);
-                    b.setAttribute("aria-pressed", on ? "true" : "false");
-                });
                 regOpts.querySelector("[data-reg-count]").textContent = state.reg.cantidad;
             }
         }

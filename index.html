@@ -13,6 +13,138 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== Portada: recorte de la colección (fondo transparente) ===== */
+        .hero-photo {
+            -webkit-mask-image: none;
+            mask-image: none;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 16px 20px rgba(35, 28, 20, .14));
+        }
+
+        /* Computadora y tablet horizontal: la colección a la derecha del título */
+        @media (min-width: 901px) {
+            .hero {
+                grid-template-columns: 44% 56%;
+                min-height: 92vh;
+                padding: 72px 4.5vw 45px;
+            }
+
+            .hero-bottom {
+                display: block;
+            }
+
+            .hero-photo {
+                position: absolute;
+                z-index: -1;
+                top: 72px;
+                right: 4vw;
+                bottom: 0;
+                left: auto;
+                width: min(52vw, 780px);
+                margin: 0;
+                padding: 0;
+                aspect-ratio: auto;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        /* Celular y tablet vertical: debajo del texto, centrada */
+        @media (max-width: 900px) {
+            .hero-photo {
+                position: relative;
+                width: min(680px, 94%);
+                aspect-ratio: auto;
+                margin: 44px auto 0;
+                padding-bottom: 36px;
+            }
+        }
+
+        /* ===== Función (reemplaza a "Usos") ===== */
+        .funcion-intro {
+            max-width: 560px;
+            margin-top: 30px;
+            font-size: 12px;
+            line-height: 1.9;
+            color: var(--muted);
+        }
+
+        .funcion-lista {
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 90px;
+        }
+
+        .funcion-item {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 26px;
+            justify-items: center;
+        }
+
+        .funcion-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .funcion-item.ancha img {
+            max-width: 1080px;
+        }
+
+        .funcion-item.compacta img {
+            max-width: 640px;
+        }
+
+        .funcion-texto {
+            width: 100%;
+            max-width: 1080px;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: 70px minmax(0, 1fr);
+            gap: 6px 20px;
+            align-items: baseline;
+        }
+
+        .funcion-texto .step-number {
+            grid-row: span 2;
+        }
+
+        .funcion-texto h3 {
+            font-size: 24px;
+            letter-spacing: -.5px;
+        }
+
+        .funcion-texto p {
+            max-width: 560px;
+            font-size: 11.5px;
+            line-height: 1.85;
+            color: var(--muted);
+        }
+
+        @media (max-width: 600px) {
+            .funcion-lista {
+                margin-top: 56px;
+                gap: 64px;
+            }
+
+            .funcion-texto {
+                grid-template-columns: 1fr;
+            }
+
+            .funcion-texto .step-number {
+                grid-row: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -111,7 +243,7 @@
     </div>
 
     <div class="hero-photo">
-        <img src="assets/images/portada-lineas%202.webp" alt="Las siete líneas de color de HABITARE sobre plintos de piedra en un espacio luminoso" width="1342" height="752" fetchpriority="high">
+        <img src="assets/images/portada-lineas.webp" alt="Las siete líneas de color de HABITARE sobre plintos de piedra en un espacio luminoso" width="1629" height="639" fetchpriority="high">
     </div>
 
     <span class="hero-bottom">DESLIZÁ PARA EXPLORAR</span>
@@ -362,30 +494,51 @@
 </section>
 
 
-<!-- USOS -->
-<section class="usos" id="usos">
+<!-- FUNCIÓN -->
+<section class="usos" id="funcion">
 
     <div class="section-heading">
         <div>
-            <span class="overline">APLICACIONES</span>
-            <h2>Usos</h2>
+            <span class="overline">SISTEMA</span>
+            <h2>Función</h2>
         </div>
         <span class="section-index">05 / 05</span>
     </div>
 
-    <div class="usos-gallery" aria-label="Aplicaciones del sistema Habitare C">
-        <figure class="uso-photo uso-photo-large">
-            <img src="assets/images/pieza-dual-natural.webp" alt="Sistema Habitare C cerrando un ambiente completo" loading="lazy">
+    <p class="funcion-intro">
+        Un sistema pensado para instalarse sin obra: se posiciona la guía inferior,
+        se apilan las piezas cerámicas y un componente telescópico se ajusta al techo.
+    </p>
+
+    <div class="funcion-lista">
+
+        <figure class="funcion-item ancha">
+            <img src="assets/images/sistema-guia-inferior.webp" alt="Armado de una columna HABITARE: posicionar la guía inferior, encastrar, apilar y colocar el último ladrillo" width="1716" height="661" loading="lazy">
+            <figcaption class="funcion-texto">
+                <span class="step-number">01</span>
+                <h3>Armado de la columna</h3>
+                <p>Sobre la guía inferior, las piezas se encastran y se apilan una a una hasta el último ladrillo.</p>
+            </figcaption>
         </figure>
-        <figure class="uso-photo">
-            <img src="assets/images/pieza-dual-natural.webp" alt="Columna Habitare C funcionando como partición de ambiente" loading="lazy">
+
+        <figure class="funcion-item ancha">
+            <img src="assets/images/sistema-guia-superior.webp" alt="Instalación de la guía superior, extensión del componente telescópico y ajuste" width="1373" height="765" loading="lazy">
+            <figcaption class="funcion-texto">
+                <span class="step-number">02</span>
+                <h3>Guía superior y ajuste</h3>
+                <p>La guía superior se fija al techo y el componente telescópico se extiende y se ajusta a la altura del ambiente.</p>
+            </figcaption>
         </figure>
-        <figure class="uso-photo">
-            <img src="assets/images/pieza-dual-natural.webp" alt="Columna Habitare C como estante flotante" loading="lazy">
+
+        <figure class="funcion-item compacta">
+            <img src="assets/images/sistema-telescopico.webp" alt="Detalle del componente telescópico y de la columna de módulos con sus guías" width="1028" height="856" loading="lazy">
+            <figcaption class="funcion-texto">
+                <span class="step-number">03</span>
+                <h3>Un sistema que se sostiene solo</h3>
+                <p>Guías y componente telescópico mantienen la columna firme, sin intervenir el espacio de forma permanente.</p>
+            </figcaption>
         </figure>
-        <figure class="uso-photo uso-photo-wide">
-            <img src="assets/images/pieza-dual-natural.webp" alt="Sistema Habitare C como recurso decorativo y funcional" loading="lazy">
-        </figure>
+
     </div>
 
 </section>

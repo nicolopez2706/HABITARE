@@ -135,81 +135,39 @@
             }
         }
 
-        /* ===== Función (reemplaza a "Usos") ===== */
-        .funcion-intro {
-            max-width: 560px;
-            margin-top: 30px;
-            font-size: 12px;
-            line-height: 1.9;
-            color: var(--muted);
+        /* ===== ¿Qué resuelve?: un solo bloque de texto (los items pasaron a la banda de abajo) ===== */
+        .resuelve {
+            display: block;
         }
 
-        .funcion-lista {
-            margin-top: 80px;
-            display: flex;
-            flex-direction: column;
-            gap: 90px;
-        }
-
-        .funcion-item {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr);
-            gap: 26px;
-            justify-items: center;
-        }
-
-        .funcion-item img {
-            width: 100%;
-            height: auto;
-        }
-
-        .funcion-item.ancha img {
-            max-width: 1080px;
-        }
-
-        .funcion-item.compacta img {
+        .resuelve-copy {
             max-width: 640px;
         }
 
-        .funcion-texto {
-            width: 100%;
-            max-width: 1080px;
-            padding-top: 22px;
-            border-top: 1px solid var(--line);
+        /* ===== Banda "Una solución para espacios que cambian": seis ítems, sin repetir ===== */
+        @media (min-width: 1001px) {
+            .statement {
+                grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+                gap: 70px;
+            }
+        }
+
+        .statement-list {
             display: grid;
-            grid-template-columns: 70px minmax(0, 1fr);
-            gap: 6px 20px;
-            align-items: baseline;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 38px 48px;
         }
 
-        .funcion-texto .step-number {
-            grid-row: span 2;
-        }
-
-        .funcion-texto h3 {
-            font-size: 24px;
-            letter-spacing: -.5px;
-        }
-
-        .funcion-texto p {
-            max-width: 560px;
-            font-size: 11.5px;
-            line-height: 1.85;
-            color: var(--muted);
+        .statement-item,
+        .statement-item:last-child {
+            padding-bottom: 26px;
+            border-bottom: 1px solid var(--line-on-taupe);
         }
 
         @media (max-width: 600px) {
-            .funcion-lista {
-                margin-top: 56px;
-                gap: 64px;
-            }
-
-            .funcion-texto {
-                grid-template-columns: 1fr;
-            }
-
-            .funcion-texto .step-number {
-                grid-row: auto;
+            .statement-list {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 30px;
             }
         }
     </style>
@@ -352,34 +310,6 @@
             </p>
         </div>
 
-        <div class="resuelve-grid">
-
-            <div class="resuelve-item">
-                <span class="ring"></span>
-                <h4>Divide sin cerrar</h4>
-                <p>Permite delimitar sectores y generar privacidad sin aislar completamente los ambientes.</p>
-            </div>
-
-            <div class="resuelve-item">
-                <span class="ring"></span>
-                <h4>Filtra</h4>
-                <p>Sus vacíos mantienen el paso de la luz, las visuales y la relación entre ambos lados del espacio.</p>
-            </div>
-
-            <div class="resuelve-item">
-                <span class="ring"></span>
-                <h4>Se adapta</h4>
-                <p>La cantidad y disposición de las columnas puede variar según las dimensiones y necesidades de cada ambiente.</p>
-            </div>
-
-            <div class="resuelve-item">
-                <span class="ring"></span>
-                <h4>Equipa</h4>
-                <p>La incorporación de accesorios permite sumar nuevas funciones al sistema.</p>
-            </div>
-
-        </div>
-
     </div>
 
 </section>
@@ -428,7 +358,7 @@
             <span class="overline">COLECCIÓN / 01</span>
             <h2>El módulo</h2>
         </div>
-        <span class="section-index">03 / 05</span>
+        <span class="section-index">03 / 04</span>
     </div>
 
     <div class="product-grid">
@@ -496,12 +426,22 @@
 
         <div class="statement-item">
             <h4>Divide sin cerrar</h4>
-            <p>Genera privacidad sin aislar completamente el ambiente.</p>
+            <p>Permite delimitar sectores y generar privacidad sin aislar completamente los ambientes.</p>
         </div>
 
         <div class="statement-item">
-            <h4>Se adapta al uso</h4>
-            <p>Permite reorganizar el espacio según la actividad, el momento o la necesidad.</p>
+            <h4>Filtra</h4>
+            <p>Sus vacíos mantienen el paso de la luz, las visuales y la relación entre ambos lados del espacio.</p>
+        </div>
+
+        <div class="statement-item">
+            <h4>Se adapta</h4>
+            <p>La cantidad y disposición de las columnas varía según cada ambiente, y se reorganiza según la actividad, el momento o la necesidad.</p>
+        </div>
+
+        <div class="statement-item">
+            <h4>Equipa</h4>
+            <p>La incorporación de accesorios permite sumar nuevas funciones al sistema.</p>
         </div>
 
         <div class="statement-item">
@@ -527,7 +467,7 @@
             <span class="overline">PROCESO</span>
             <h2>¿Cómo<br><i>funciona?</i></h2>
         </div>
-        <span class="section-index">04 / 05</span>
+        <span class="section-index">04 / 04</span>
     </div>
 
     <p class="proceso-intro">
@@ -556,56 +496,6 @@
             <h3>Personalizá el uso</h3>
             <p>El sistema permite incorporar accesorios y adaptar la composición a distintas actividades.</p>
         </div>
-
-    </div>
-
-</section>
-
-
-<!-- FUNCIÓN -->
-<section class="usos" id="funcion">
-
-    <div class="section-heading">
-        <div>
-            <span class="overline">SISTEMA</span>
-            <h2>Función</h2>
-        </div>
-        <span class="section-index">05 / 05</span>
-    </div>
-
-    <p class="funcion-intro">
-        Un sistema pensado para instalarse sin obra: se posiciona la guía inferior,
-        se apilan las piezas cerámicas y un componente telescópico se ajusta al techo.
-    </p>
-
-    <div class="funcion-lista">
-
-        <figure class="funcion-item ancha">
-            <img src="assets/images/sistema-guia-inferior.webp" alt="Armado de una columna HABITARE: posicionar la guía inferior, encastrar, apilar y colocar el último ladrillo" width="1716" height="661" loading="lazy">
-            <figcaption class="funcion-texto">
-                <span class="step-number">01</span>
-                <h3>Armado de la columna</h3>
-                <p>Sobre la guía inferior, las piezas se encastran y se apilan una a una hasta el último ladrillo.</p>
-            </figcaption>
-        </figure>
-
-        <figure class="funcion-item ancha">
-            <img src="assets/images/sistema-guia-superior.webp" alt="Instalación de la guía superior, extensión del componente telescópico y ajuste" width="1373" height="765" loading="lazy">
-            <figcaption class="funcion-texto">
-                <span class="step-number">02</span>
-                <h3>Guía superior y ajuste</h3>
-                <p>La guía superior se fija al techo y el componente telescópico se extiende y se ajusta a la altura del ambiente.</p>
-            </figcaption>
-        </figure>
-
-        <figure class="funcion-item compacta">
-            <img src="assets/images/sistema-telescopico.webp" alt="Detalle del componente telescópico y de la columna de módulos con sus guías" width="1028" height="856" loading="lazy">
-            <figcaption class="funcion-texto">
-                <span class="step-number">03</span>
-                <h3>Un sistema que se sostiene solo</h3>
-                <p>Guías y componente telescópico mantienen la columna firme, sin intervenir el espacio de forma permanente.</p>
-            </figcaption>
-        </figure>
 
     </div>
 

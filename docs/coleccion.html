@@ -83,13 +83,6 @@
             width: 100%;
         }
 
-        .sistema .acabados {
-            grid-template-columns: minmax(0, 1fr);
-            max-width: 720px;
-            margin-top: 110px;
-            padding-top: 70px;
-        }
-
         @media (max-width: 900px) {
             .sistema-item,
             .sistema-item:nth-child(even) {
@@ -100,7 +93,6 @@
             .sistema-item:nth-child(even) .sistema-texto {
                 order: 0;
             }
-
         }
 
         @media (max-width: 600px) {
@@ -111,11 +103,6 @@
             .sistema-lista {
                 margin-top: 56px;
                 gap: 64px;
-            }
-
-            .sistema .acabados {
-                margin-top: 80px;
-                padding-top: 56px;
             }
         }
     </style>
@@ -263,7 +250,7 @@
     </div>
 
     <p class="sistema-intro">
-        Dentro de cada línea también elegís el color de los componentes, sumás
+        Dentro de cada línea elegís el color de los componentes, sumás
         complementos funcionales y el regulador ambiental.
     </p>
 
@@ -428,38 +415,6 @@
                 <img src="assets/images/sistema-guia-superior.webp" alt="Instalación de la guía superior, extensión del componente telescópico y ajuste" width="1373" height="765" loading="lazy">
             </figure>
         </article>
-
-    </div>
-
-    <div class="acabados">
-
-        <div class="acabados-detalle">
-            <span class="overline">COLOR DE LOS COMPONENTES</span>
-            <h3>Gris, blanco <i>o negro.</i></h3>
-            <p>
-                Guías, componente telescópico y complementos se ofrecen en tres
-                opciones de acabado y color.
-            </p>
-
-            <div class="acabados-vista">
-                <img src="assets/images/componentes-gris.webp" alt="Ambiente con pared divisoria HABITARE y componentes en color gris" width="1448" height="1086" loading="lazy">
-            </div>
-
-            <div class="color-options" role="group" aria-label="Color de los componentes">
-                <button type="button" class="color-option-btn active" data-componente="gris" aria-pressed="true">
-                    <span class="color-option-swatch" style="--swatch:#8c8c8c;"></span>
-                    Gris
-                </button>
-                <button type="button" class="color-option-btn" data-componente="blanco" aria-pressed="false">
-                    <span class="color-option-swatch" style="--swatch:#f2f2f2;"></span>
-                    Blanco
-                </button>
-                <button type="button" class="color-option-btn" data-componente="negro" aria-pressed="false">
-                    <span class="color-option-swatch" style="--swatch:#222222;"></span>
-                    Negro
-                </button>
-            </div>
-        </div>
 
     </div>
 

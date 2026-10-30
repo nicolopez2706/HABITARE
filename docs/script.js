@@ -112,6 +112,63 @@ const ACCESORIOS = [
         padding-left: 0;
     }
 
+    .reg-info {
+        margin-bottom: 30px;
+    }
+
+    .reg-lead {
+        max-width: 520px;
+        font-family: "Playfair Display", serif;
+        font-size: 24px;
+        line-height: 1.3;
+        letter-spacing: -.3px;
+        color: var(--ink);
+    }
+
+    .reg-info p + p {
+        max-width: 560px;
+        margin-top: 14px;
+        font-size: 12px;
+        line-height: 1.9;
+        color: var(--muted);
+    }
+
+    .reg-galeria {
+        margin-top: 44px;
+        padding-top: 36px;
+        border-top: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px 24px;
+        align-items: start;
+    }
+
+    .reg-galeria figure {
+        margin: 0;
+    }
+
+    .reg-galeria .reg-g-ancha {
+        grid-column: 1 / -1;
+    }
+
+    .reg-galeria img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .reg-galeria figcaption {
+        margin-top: 12px;
+        font-size: 11px;
+        line-height: 1.8;
+        color: var(--muted);
+    }
+
+    .reg-galeria figcaption strong {
+        font-weight: 400;
+        color: var(--ink);
+    }
+
     .extra-dot {
         display: inline-block;
         width: 9px;
@@ -127,6 +184,12 @@ const ACCESORIOS = [
         .reg-card {
             grid-template-columns: 1fr;
             gap: 24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .reg-galeria {
+            grid-template-columns: minmax(0, 1fr);
         }
     }`;
 
@@ -633,6 +696,15 @@ function initConfigurador(root) {
                     <h4>Regulador ambiental</h4>
                 </div>
 
+                <div class="reg-info">
+                    <p class="reg-lead">Controla la <i>entrada de luz y aire</i> según las necesidades de cada momento.</p>
+                    <p>
+                        Un componente giratorio que vincula ambos lados de la pared y permite regular el ingreso
+                        de luz y el grado de privacidad entre ambientes. Se ofrece en tres colores y es una
+                        solución flexible para modificar la apertura visual del sistema.
+                    </p>
+                </div>
+
                 <div class="reg-card">
                     <figure class="reg-visual">
                         <img src="${imagenRegulador(state.regColor)}" data-reg-img="${state.regColor}"
@@ -642,8 +714,7 @@ function initConfigurador(root) {
                     </figure>
                     <div class="reg-controls">
                         <p class="config-help">
-                            Componente giratorio que vincula ambos lados de la pared y regula el ingreso de luz y
-                            la privacidad entre ambientes. Se ofrece en tres colores.
+                            Elegí el color: la foto cambia y el regulador se suma a tu configuración.
                         </p>
                         <span class="reg-label">Color del regulador</span>
                         <div class="acc-colors" role="group" aria-label="Color del regulador ambiental">
@@ -662,6 +733,26 @@ function initConfigurador(root) {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="reg-galeria">
+                    <figure class="reg-g-ancha">
+                        <img src="assets/images/regulador-pared.webp"
+                             alt="Pared HABITARE con reguladores ambientales en distintas posiciones: cerrados, entreabiertos y abiertos"
+                             width="1448" height="1086" loading="lazy">
+                        <figcaption>El usuario puede ajustar su <strong>intensidad</strong> y modificarla <strong>a gusto</strong>.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="assets/images/regulador-columna.webp"
+                             alt="Columna de módulos HABITARE con tres paneles giratorios en distintos ángulos"
+                             width="1122" height="1402" loading="lazy">
+                        <figcaption>Este componente es el que permite <strong>conectar</strong> un lado del otro y ajustar la <strong>privacidad</strong> del espacio.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="assets/images/regulador-luz.webp"
+                             alt="Detalle de un módulo HABITARE con la luz del exterior atravesando la perforación"
+                             width="1122" height="1402" loading="lazy">
+                    </figure>
                 </div>
             </div>
         `;
@@ -881,35 +972,6 @@ function initConfigurador(root) {
     }
 
     render();
-}
-
-/* =====================================
-   COLOR DE LOS COMPONENTES (coleccion.html)
-===================================== */
-
-const acabadosVista = document.querySelector(".acabados-vista img");
-
-if (acabadosVista) {
-    const acabadoBtns = document.querySelectorAll("[data-componente]");
-
-    acabadoBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const color = btn.dataset.componente;
-
-            acabadoBtns.forEach(b => {
-                const activo = b === btn;
-                b.classList.toggle("active", activo);
-                b.setAttribute("aria-pressed", activo ? "true" : "false");
-            });
-
-            acabadosVista.classList.add("cambiando");
-            setTimeout(() => {
-                acabadosVista.src = "assets/images/componentes-" + color + ".webp";
-                acabadosVista.alt = "Ambiente con pared divisoria HABITARE y componentes en color " + COMPONENT_COLORS[color].toLowerCase();
-                acabadosVista.classList.remove("cambiando");
-            }, 250);
-        });
-    });
 }
 
 /* =====================================

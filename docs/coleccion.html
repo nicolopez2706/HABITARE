@@ -15,19 +15,17 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* ===== Colección: 3 bloques (Líneas / Componentes del sistema / Componentes funcionales) ===== */
+        /* ===== Colección: 2 bloques (Líneas / Componentes del sistema) ===== */
         .sistema {
             padding: 130px 8vw;
             background: var(--cream-soft);
             scroll-margin-top: 72px;
         }
 
-        .accesorios {
-            background: var(--cream);
-        }
-
-        .regulador {
-            background: var(--cream-soft);
+        @media (min-width: 1001px) {
+            .definiciones {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
 
         .sistema-intro {
@@ -92,43 +90,9 @@
             padding-top: 70px;
         }
 
-        .colocacion {
-            margin-top: 110px;
-            padding-top: 80px;
-            border-top: 1px solid var(--line);
-            display: grid;
-            grid-template-columns: minmax(0, 34%) minmax(0, 1fr);
-            gap: 60px;
-            align-items: center;
-        }
-
-        .colocacion .acabados-colocacion img {
-            width: 100%;
-            height: auto;
-        }
-
-        .colocacion-texto h3 {
-            margin-top: 24px;
-            font-size: 42px;
-            letter-spacing: -1px;
-        }
-
-        .colocacion-texto p {
-            margin-top: 22px;
-            max-width: 440px;
-            font-size: 12px;
-            line-height: 2;
-            color: var(--muted);
-        }
-
-        .regulador-luz {
-            padding-bottom: 0;
-        }
-
         @media (max-width: 900px) {
             .sistema-item,
-            .sistema-item:nth-child(even),
-            .colocacion {
+            .sistema-item:nth-child(even) {
                 grid-template-columns: minmax(0, 1fr);
                 gap: 34px;
             }
@@ -137,9 +101,6 @@
                 order: 0;
             }
 
-            .colocacion .acabados-colocacion {
-                max-width: 360px;
-            }
         }
 
         @media (max-width: 600px) {
@@ -152,14 +113,9 @@
                 gap: 64px;
             }
 
-            .sistema .acabados,
-            .colocacion {
+            .sistema .acabados {
                 margin-top: 80px;
                 padding-top: 56px;
-            }
-
-            .colocacion-texto h3 {
-                font-size: 34px;
             }
         }
     </style>
@@ -288,12 +244,6 @@
                 <a class="linea-cta" href="#componentes-sistema">VER COMPONENTES<span>→</span></a>
             </div>
 
-            <div class="definicion">
-                <h4>Componentes funcionales</h4>
-                <p>Complementos funcionales y regulador ambiental, que amplían las posibilidades de uso del sistema.</p>
-                <a class="linea-cta" href="#componentes-funcionales">VER FUNCIONALES<span>→</span></a>
-            </div>
-
         </div>
 
     </div>
@@ -309,8 +259,13 @@
             <span class="overline">PALETA / 07</span>
             <h2>Líneas</h2>
         </div>
-        <span class="section-index">01 / 03</span>
+        <span class="section-index">01 / 02</span>
     </div>
+
+    <p class="sistema-intro">
+        Dentro de cada línea también elegís el color de los componentes, sumás
+        complementos funcionales y el regulador ambiental.
+    </p>
 
     <div class="lineas-grid">
 
@@ -432,7 +387,7 @@
             <span class="overline">COMPONENTES DE METAL / 03</span>
             <h2>Componentes<br><i>del sistema.</i></h2>
         </div>
-        <span class="section-index">02 / 03</span>
+        <span class="section-index">02 / 02</span>
     </div>
 
     <p class="sistema-intro">
@@ -505,149 +460,6 @@
                 </button>
             </div>
         </div>
-
-    </div>
-
-</section>
-
-
-<!-- ACCESORIOS Y COMPLEMENTOS -->
-<section class="accesorios" id="componentes-funcionales">
-
-    <div class="section-heading">
-        <div>
-            <span class="overline">ACCESORIOS Y COMPLEMENTOS</span>
-            <h2>Componentes<br><i>funcionales.</i></h2>
-        </div>
-        <span class="section-index">03 / 03</span>
-    </div>
-
-    <div class="product-grid complementos">
-
-        <div class="product-details">
-
-            <span class="product-code">01 — COMPLEMENTOS FUNCIONALES</span>
-
-            <h3>Siete complementos <i>funcionales.</i></h3>
-
-            <p>
-                El sistema incorpora siete complementos funcionales diseñados para
-                ampliar las posibilidades de uso de HABITARE.
-            </p>
-            <p>
-                Fabricados en chapa de acero al carbono SAE 1010 con acabado
-                galvanizado, permiten incorporar diferentes funciones al sistema
-                y se ofrecen en tres opciones de acabado y color.
-            </p>
-
-            <div class="specifications">
-                <div><span>MATERIAL</span><strong>Chapa de acero al carbono SAE 1010 (calibre 16)</strong></div>
-                <div><span>PROCESO</span><strong>Corte láser y plegado</strong></div>
-                <div><span>ACABADO</span><strong>Galvanizado</strong></div>
-                <div><span>COLORES</span><strong>Gris, blanco o negro</strong></div>
-            </div>
-
-            <ol class="complementos-lista" aria-label="Los siete complementos">
-                <li data-pin="1">Organizador documental</li>
-                <li data-pin="2">Contenedor multiuso</li>
-                <li data-pin="3">Luminaria</li>
-                <li data-pin="4">Contenedor compartimentado</li>
-                <li data-pin="5">Porta llaves / lentes</li>
-                <li data-pin="6">Perchero</li>
-                <li data-pin="7">Estante</li>
-            </ol>
-
-        </div>
-
-        <div class="product-display">
-            <figure class="complementos-figura">
-                <img src="assets/images/complementos-funcionales.webp" alt="Pared HABITARE con los siete complementos funcionales colocados, en acabados negro, gris y blanco" width="976" height="1078" loading="lazy">
-                <span class="pin" data-pin="1" style="--x:79.4%;--y:55.7%">1</span>
-                <span class="pin" data-pin="2" style="--x:36.1%;--y:53.3%">2</span>
-                <span class="pin" data-pin="3" style="--x:57.4%;--y:19.9%">3</span>
-                <span class="pin" data-pin="4" style="--x:14.3%;--y:30.6%">4</span>
-                <span class="pin" data-pin="5" style="--x:39.5%;--y:84%">5</span>
-                <span class="pin" data-pin="6" style="--x:17.4%;--y:62.2%">6</span>
-                <span class="pin" data-pin="7" style="--x:79.9%;--y:91.4%">7</span>
-            </figure>
-        </div>
-
-    </div>
-
-    <div class="colocacion">
-
-        <figure class="acabados-colocacion">
-            <img src="assets/images/complementos-colocacion.webp" alt="Colocación de un complemento negro sobre el inserto de madera de un módulo HABITARE" width="752" height="1078" loading="lazy">
-            <figcaption>Colocación de un complemento sobre el módulo.</figcaption>
-        </figure>
-
-        <div class="colocacion-texto">
-            <span class="overline">COLOCACIÓN Y COLOR</span>
-            <h3>Se suman <i>al módulo.</i></h3>
-            <p>
-                Cada complemento se coloca directamente sobre el módulo y se ofrece en gris,
-                blanco o negro. Al armar tu pedido elegís el color de cada uno.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- REGULADOR AMBIENTAL -->
-<section class="regulador" id="regulador-ambiental">
-
-    <div class="section-heading">
-        <div>
-            <span class="overline">02 — COMPONENTE FUNCIONAL</span>
-            <h2>Regulador<br><i>ambiental.</i></h2>
-        </div>
-    </div>
-
-    <div class="regulador-grid">
-
-        <div class="regulador-texto">
-            <p class="regulador-lead">
-                Controla la <i>entrada de luz y aire</i> según las necesidades de cada momento.
-            </p>
-            <p>
-                Un componente giratorio que vincula ambos lados de la pared y permite
-                regular el ingreso de luz y el grado de privacidad entre ambientes.
-                Sus paneles de fieltro ofrecen una solución flexible para modificar
-                la apertura visual del sistema.
-            </p>
-
-            <span class="overline regulador-colores-label">PANELES DE FIELTRO / 3 COLORES</span>
-            <div class="color-options" aria-label="Colores del fieltro">
-                <div class="color-option-btn">
-                    <span class="color-option-swatch" style="--swatch:#6b4f3a;"></span>
-                    Marrón
-                </div>
-                <div class="color-option-btn">
-                    <span class="color-option-swatch" style="--swatch:#6e7074;"></span>
-                    Gris
-                </div>
-                <div class="color-option-btn">
-                    <span class="color-option-swatch" style="--swatch:#f2f2f2;"></span>
-                    Blanco
-                </div>
-            </div>
-        </div>
-
-        <figure class="regulador-pared">
-            <img src="assets/images/regulador-pared.webp" alt="Pared HABITARE con reguladores ambientales en distintas posiciones: cerrados, entreabiertos y abiertos" width="1448" height="1086" loading="lazy">
-            <figcaption>El usuario puede ajustar su <strong>intensidad</strong> y modificarla <strong>a gusto</strong>.</figcaption>
-        </figure>
-
-        <figure class="regulador-columna">
-            <img src="assets/images/regulador-columna.webp" alt="Columna de módulos HABITARE con tres paneles de fieltro giratorios en distintos ángulos" width="1122" height="1402" loading="lazy">
-            <figcaption>Este componente es el que permite <strong>conectar</strong> un lado del otro y ajustar la <strong>privacidad</strong> del espacio.</figcaption>
-        </figure>
-
-        <figure class="regulador-luz">
-            <img src="assets/images/regulador-luz.webp" alt="Detalle de un módulo HABITARE con la luz del exterior atravesando la perforación" width="1122" height="1402" loading="lazy">
-        </figure>
 
     </div>
 
